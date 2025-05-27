@@ -1,0 +1,759 @@
+{
+	"info": {
+		"_postman_id": "1d72b337-30a9-4243-8806-8e27642a5ba0",
+		"name": "EduTech Evaluación 2 - API completa",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "45279039",
+		"_collection_link": "https://cristobalfilun.postman.co/workspace/Cristobal-Filun's-Workspace~01747391-6020-486b-82f9-7d8d81951ec1/collection/45279039-1d72b337-30a9-4243-8806-8e27642a5ba0?action=share&source=collection_link&creator=45279039"
+	},
+	"item": [
+		{
+			"name": "Curso",
+			"item": [
+				{
+					"name": "Crear curso",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Bases de Datos\",\r\n  \"descripcion\": \"Diseño y consultas SQL en MySQL\",\r\n  \"duracionHoras\": 30\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/cursos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cursos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar cursos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Código 200 recibido\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"El body contiene al menos un curso\", function () {\r",
+									"    const json = pm.response.json();\r",
+									"    pm.expect(json.length).to.be.above(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Cada curso tiene nombre, descripción y duración\", function () {\r",
+									"    const json = pm.response.json();\r",
+									"    pm.expect(json[0]).to.have.property(\"nombre\");\r",
+									"    pm.expect(json[0]).to.have.property(\"descripcion\");\r",
+									"    pm.expect(json[0]).to.have.property(\"duracionHoras\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/cursos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cursos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar curso por ID",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/cursos/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cursos",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar todos los cursos",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/cursos/clear",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cursos",
+								"clear"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints para la administración de cursos: creación, listado y eliminación."
+		},
+		{
+			"name": "Estudiante",
+			"item": [
+				{
+					"name": "Crear estudiante válido",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Martín\",\r\n  \"apellido\": \"Ramírez\",\r\n  \"correo\": \"martin.ramirez@duocuc.cl\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/estudiantes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"estudiantes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener estudiante por ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Luis\",\r\n  \"apellido\": \"González\",\r\n  \"correo\": \"luis.gonzalez@duocuc.cl\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/estudiantes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"estudiantes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar estudiantes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Código 200 recibido\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"El body contiene al menos un estudiante\", function () {\r",
+									"    const json = pm.response.json();\r",
+									"    pm.expect(json.length).to.be.above(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Cada estudiante tiene nombre, apellido y correo\", function () {\r",
+									"    const json = pm.response.json();\r",
+									"    pm.expect(json[0]).to.have.property(\"nombre\");\r",
+									"    pm.expect(json[0]).to.have.property(\"apellido\");\r",
+									"    pm.expect(json[0]).to.have.property(\"correo\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/estudiantes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"estudiantes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar estudiante por ID",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/estudiantes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"estudiantes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar todos los estudiantes",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/estudiantes/clear",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"estudiantes",
+								"clear"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Operaciones CRUD para estudiantes, incluyendo validaciones."
+		},
+		{
+			"name": "Evaluación",
+			"item": [],
+			"description": "Registro y consulta de evaluaciones por estudiante."
+		},
+		{
+			"name": "Inscripción",
+			"item": [
+				{
+					"name": "Crear inscripción válida",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"idEstudiante\": 8,\r\n  \"idCurso\": 5,\r\n  \"fechaInscripcion\": \"2025-06-01\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8083/api/inscripciones",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"inscripciones"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear inscripción inválida",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8083/api/inscripciones",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"inscripciones"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar inscripciones detalladas",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Código 200 recibido\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"El body contiene al menos una inscripción\", function () {\r",
+									"    const json = pm.response.json();\r",
+									"    pm.expect(json.length).to.be.above(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Cada inscripción tiene curso y estudiante\", function () {\r",
+									"    const json = pm.response.json();\r",
+									"    pm.expect(json[0]).to.have.property(\"curso\");\r",
+									"    pm.expect(json[0]).to.have.property(\"estudiante\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8083/api/inscripciones/detalladas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"inscripciones",
+								"detalladas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar inscripción por ID",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8083/api/inscripciones/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"inscripciones",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar todas las inscripciones",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8083/api/inscripciones/clear",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"inscripciones",
+								"clear"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Gestión de inscripciones de estudiantes a cursos."
+		},
+		{
+			"name": "Notificaciones",
+			"item": [
+				{
+					"name": "Crear notificación",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Código 200 recibido\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"La respuesta contiene los campos esperados\", function () {\r",
+									"    const json = pm.response.json();\r",
+									"    pm.expect(json).to.have.property(\"mensaje\");\r",
+									"    pm.expect(json).to.have.property(\"destinatario\");\r",
+									"    pm.expect(json).to.have.property(\"fechaEnvio\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"La fecha de envío fue generada correctamente\", function () {\r",
+									"    const json = pm.response.json();\r",
+									"    pm.expect(json.fechaEnvio).to.not.be.null;\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"asunto\": \"Evaluación agendada\",\r\n  \"mensaje\": \"Tu evaluación se realizará el 01 de junio\",\r\n  \"destinatario\": \"martin.ramirez@duocuc.cl\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8084/api/notificaciones",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"api",
+								"notificaciones"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar notificaciones",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Código 200 recibido\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"El body contiene al menos una notificación\", function () {\r",
+									"    const json = pm.response.json();\r",
+									"    pm.expect(json.length).to.be.above(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Cada notificación tiene mensaje, destinatario y fecha de envío\", function () {\r",
+									"    const json = pm.response.json();\r",
+									"    pm.expect(json[0]).to.have.property(\"mensaje\");\r",
+									"    pm.expect(json[0]).to.have.property(\"destinatario\");\r",
+									"    pm.expect(json[0]).to.have.property(\"fechaEnvio\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8084/api/notificaciones",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"api",
+								"notificaciones"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar notificación por ID",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8084/api/notificaciones/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"api",
+								"notificaciones",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar todas las notificaciones",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8084/api/notificaciones/clear",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"api",
+								"notificaciones",
+								"clear"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Envío de notificaciones por correo a estudiantes."
+		},
+		{
+			"name": "Reporte",
+			"item": [
+				{
+					"name": "Listar reportes consolidados con inscripción",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Código de estado es 200 OK\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Respuesta es un array no vacío\", function () {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.length).to.be.above(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Los campos esperados existen en el primer elemento\", function () {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    const reporte = jsonData[0];\r",
+									"    \r",
+									"    pm.expect(reporte).to.have.property(\"nombreEstudiante\");\r",
+									"    pm.expect(reporte).to.have.property(\"correoEstudiante\");\r",
+									"    pm.expect(reporte).to.have.property(\"curso\");\r",
+									"    pm.expect(reporte).to.have.property(\"descripcionCurso\");\r",
+									"    pm.expect(reporte).to.have.property(\"fechaInscripcion\");\r",
+									"    pm.expect(reporte).to.have.property(\"fechaNotificacion\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Los campos no están vacíos\", function () {\r",
+									"    const reporte = pm.response.json()[0];\r",
+									"\r",
+									"    pm.expect(reporte.nombreEstudiante).to.not.be.empty;\r",
+									"    pm.expect(reporte.correoEstudiante).to.include(\"@\");\r",
+									"    pm.expect(reporte.fechaInscripcion).to.match(/^\\d{4}-\\d{2}-\\d{2}/);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8085/api/reportes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"reportes"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Consolidación de datos para visualización resumida de inscripciones y evaluaciones."
+		}
+	]
+}
