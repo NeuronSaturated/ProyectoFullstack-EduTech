@@ -9,7 +9,7 @@ Este repositorio contiene todos los microservicios desarrollados para el sistema
 El proyecto está compuesto por los siguientes microservicios independientes:
 
 | Microservicio           | Descripción                                                   | Puerto |
-|-------------------------|----------------------------------------------------------------|--------|
+|-------------------------|---------------------------------------------------------------|--------|
 | `estudianteservice`     | Gestión de estudiantes (creación, listado, búsqueda).         | 8081   |
 | `cursoservice`          | Administración de cursos disponibles.                         | 8082   |
 | `inscripcionservice`    | Inscripciones de estudiantes en cursos.                       | 8083   |
